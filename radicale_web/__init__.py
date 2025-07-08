@@ -31,5 +31,8 @@ class Web(web.BaseWeb):
 
     def get(self, environ: types.WSGIEnviron, base_prefix: str, path: str,
             user: str) -> types.WSGIResponse:
+
+        print(user)
+
         return httputils.serve_resource("radicale_web", "radicale_web_data",
                                         base_prefix, path)
