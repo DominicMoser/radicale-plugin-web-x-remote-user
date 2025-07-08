@@ -10,7 +10,7 @@ package_path = os.path.join(os.path.dirname(__file__), "radicale_web")
 web_data = sum((
     [os.path.relpath(os.path.join(root, f), package_path)
      for f in files if not f.startswith(".") and not f.endswith("~")]
-    for root, _, files in os.walk(os.path.join(package_path, "web"))), [])
+    for root, _, files in os.walk(os.path.join(package_path, "internal_data"))), [])
 
 setup(
     name="Radicale_Web",
@@ -23,4 +23,4 @@ setup(
     platforms="Any",
     packages=["radicale_web"],
     package_data={"radicale_web": web_data},
-    install_requires=["radicale>=3.4.0"])
+    install_requires=["radicale>=3.1.6"])
