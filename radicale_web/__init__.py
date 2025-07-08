@@ -37,6 +37,6 @@ class Web(web.BaseWeb):
             answer = user
             return client.OK, headers, answer
 
-
-        return httputils.serve_resource("radicale_web", "radicale_web_data",
+        elif path == "/.web/default":
+            return httputils.serve_resource("radicale_web", "radicale_web_data",
                                         base_prefix, path)
