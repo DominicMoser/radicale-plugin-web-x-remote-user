@@ -569,19 +569,18 @@ function LoginScene() {
 
     function onlogin() {
         try {
-            read_form();
             let password = password_form.value;
-            if (user) {
-                error = "";
-                // setup logout
-                logout_view.classList.remove("hidden");
-                logout_btn.onclick = onlogout;
-                refresh_btn.onclick = refresh;
-                logout_user_form.textContent = user + "'s Collections";
+            let user = "User"
+            error = "";
+            // setup logout
+            logout_view.classList.remove("hidden");
+            logout_btn.onclick = onlogout;
+            refresh_btn.onclick = refresh;
+            logout_user_form.textContent = user + "'s Collections";
                 // Fetch principal
-                let loading_scene = new LoadingScene();
-                push_scene(loading_scene, false);
-                principal_req = get_principal(user, password, function(collection, error1) {
+            let loading_scene = new LoadingScene();
+            push_scene(loading_scene, false);
+            principal_req = get_principal(user, password, function(collection, error1) {
                     if (scene_index === null) {
                         return;
                     }
@@ -601,10 +600,7 @@ function LoginScene() {
                         push_scene(collections_scene, true);
                     }
                 });
-            } else {
-                error = "Username is empty";
-                fill_form();
-            }
+
         } catch(err) {
             console.error(err);
         }
@@ -1409,7 +1405,6 @@ function bytesToHumanReadable(bytes, dp=1) {
 function main() {
     // Hide startup loading message
     document.getElementById("loadingscene").classList.add("hidden");
-    console.log("Hello from new radicale_web_bypass")
     push_scene(new LoginScene(), false);
 }
 
