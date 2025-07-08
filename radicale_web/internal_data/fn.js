@@ -1409,6 +1409,7 @@ function bytesToHumanReadable(bytes, dp=1) {
 function main() {
     // Hide startup loading message
     document.getElementById("loadingscene").classList.add("hidden");
+    console.log("Hello from new radicale_web_bypass")
     push_scene(new LoginScene(), false);
 }
 
