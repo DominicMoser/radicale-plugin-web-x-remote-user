@@ -557,7 +557,7 @@ function LoginScene() {
     }
 
     function fill_form() {
-        user_form.value = user;
+        user_form.value = "User";
         password_form.value = "";
         if(error){
             error_form.textContent = "Error: " + error;
@@ -641,10 +641,12 @@ function LoginScene() {
     this.show = function() {
         remove_logout();
         fill_form();
-        form.onsubmit = onlogin;
+        form.onsubmit = onlogin
         html_scene.classList.remove("hidden");
         scene_index = scene_stack.length - 1;
         user_form.focus();
+        onlogin()
+
     };
     this.hide = function() {
         read_form();
