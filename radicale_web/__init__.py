@@ -23,6 +23,7 @@ Take a look at the class ``BaseWeb`` if you want to implement your own.
 
 
 from radicale import httputils, types, web
+from http import client
 
 MIMETYPES = httputils.MIMETYPES  # deprecated
 FALLBACK_MIMETYPE = httputils.FALLBACK_MIMETYPE  # deprecated
@@ -31,8 +32,11 @@ class Web(web.BaseWeb):
 
     def get(self, environ: types.WSGIEnviron, base_prefix: str, path: str,
             user: str) -> types.WSGIResponse:
+        if path == "/.web/test/":
+            headers = {"X-Remote-User": user}
+            answer = user
+            return client.OK, headers, answer
 
-        print(user)
 
         return httputils.serve_resource("radicale_web", "radicale_web_data",
                                         base_prefix, path)
