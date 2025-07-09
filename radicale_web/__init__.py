@@ -32,11 +32,7 @@ class Web(web.BaseWeb):
 
     def get(self, environ: types.WSGIEnviron, base_prefix: str, path: str,
             user: str) -> types.WSGIResponse:
-        if path == "/.web/test/":
             headers = {"X-Remote-User": user}
             answer = user
             return client.OK, headers, answer
 
-        elif path == "/.web/default":
-            return httputils.serve_resource("radicale_web", "radicale_web_data",
-                                        base_prefix, path)
