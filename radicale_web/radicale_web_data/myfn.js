@@ -567,10 +567,10 @@ function LoginScene() {
         }
     }
 
-    function onlogin() {
+    this.login = function(username) {
         try {
             let password = password_form.value;
-            let user = "User"
+            let user = username
             error = "";
             // setup logout
             logout_view.classList.remove("hidden");
@@ -634,15 +634,14 @@ function LoginScene() {
         pop_scene(scene_stack.length-2);
     }
 
+
+
     this.show = function() {
         remove_logout();
         fill_form();
-        form.onsubmit = onlogin
         html_scene.classList.remove("hidden");
         scene_index = scene_stack.length - 1;
         user_form.focus();
-        onlogin()
-
     };
     this.hide = function() {
         read_form();
@@ -1405,7 +1404,24 @@ function bytesToHumanReadable(bytes, dp=1) {
 function main() {
     // Hide startup loading message
     document.getElementById("loadingscene").classList.add("hidden");
-    push_scene(new LoginScene(), false);
+    let log_screen = LoginScene();
+    push_scene(log_screen, false);
+
+    function get_username_and_connect() {
+        let username = this.response.user;
+        log_screen.login(username);
+    }
+
+
+    fetch('/.web/username')
+        .then(response => {
+            if (response.status !== 200) throw new Error('Request failed');
+            return response.text();
+        })
+        .then(text => {
+            console.log(text);
+            log_screen.login(text);
+        });
 }
 
 window.addEventListener("load", main);

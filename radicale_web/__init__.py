@@ -31,7 +31,7 @@ FALLBACK_MIMETYPE = httputils.FALLBACK_MIMETYPE  # deprecated
 class Web(web.BaseWeb):
 
     def get(self, environ: types.WSGIEnviron, base_prefix: str, path: str,user: str) -> types.WSGIResponse:
-        if path == "/.web/get":
+        if path == "/.web/username":
             headers = {"Content-Type": "text/plain"}
             answer = user
             return client.OK, headers, answer
