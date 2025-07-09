@@ -1404,7 +1404,7 @@ function bytesToHumanReadable(bytes, dp=1) {
 function main() {
     // Hide startup loading message
     document.getElementById("loadingscene").classList.add("hidden");
-    let log_screen = LoginScene();
+    let log_screen = new LoginScene();
     push_scene(log_screen, false);
 
     function get_username_and_connect() {
